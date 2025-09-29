@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko" data-color-scheme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제천시 AI 침수 감지 시스템 - 실시간 모니터링 대시보드</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="header-left">
+                <div class="logo-section">
+                    <h1>제천시 AI 침수 감지 시스템</h1>
+                    <p class="system-subtitle">실시간 모니터링 대시보드</p>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="budget-info">
+                    <span class="budget-label">총 사업비</span>
+                    <span class="budget-amount">8억 5,700만원</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="time-status">
+                    <div class="current-time" id="currentTime"></div>
+                    <div class="system-status">
+                        <span class="status-indicator active"></span>
+                        <span>시스템 정상 가동</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <!-- 메인 컨테이너 -->
+        <div class="main-container">
+            <!-- 좌측: 지도 및 모니터링 지점 -->
+            <section class="monitoring-section">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>실시간 모니터링 지점</h3>
+                        <div class="filter-controls">
+                            <select id="statusFilter" class="form-control">
+                                <option value="all">전체 상태</option>
+                                <option value="정상">정상</option>
+                                <option value="주의">주의</option>
+                                <option value="경계">경계</option>
+                                <option value="심각">심각</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card__body">
+                        <div class="monitoring-map">
+                            <div class="map-container" id="mapContainer">
+                                <!-- 모니터링 지점들이 여기에 표시됩니다 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 우측: 실시간 데이터 및 경보 시스템 -->
+            <section class="data-section">
+                <!-- AI 분석 현황 -->
+                <div class="card ai-status-card">
+                    <div class="card__header">
+                        <h3>AI 분석 현황</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="ai-metrics">
+                            <div class="metric">
+                                <span class="metric-label">분석 정확도</span>
+                                <span class="metric-value">96%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">오탐률</span>
+                                <span class="metric-value">4%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">응답시간</span>
+                                <span class="metric-value">&lt; 30초</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 경보 시스템 패널 -->
+                <div class="card alert-card">
+                    <div class="card__header">
+                        <h3>4단계 경보 시스템</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="alert-levels" id="alertLevels">
+                            <!-- 경보 단계들이 여기에 표시됩니다 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 시스템 구성요소 상태 -->
+                <div class="card components-card">
+                    <div class="card__header">
+                        <h3>시스템 구성요소</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="components-grid" id="componentsGrid">
+                            <!-- 시스템 구성요소들이 여기에 표시됩니다 -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 하단: 차트 및 통계 -->
+        <div class="bottom-container">
+            <!-- 수위 차트 -->
+            <section class="chart-section">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>실시간 수위 모니터링</h3>
+                        <button class="btn btn--sm btn--secondary" id="exportBtn">데이터 내보내기</button>
+                    </div>
+                    <div class="card__body">
+                        <div class="chart-container" style="position: relative; height: 300px;">
+                            <canvas id="waterLevelChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 성과 및 통계 -->
+            <section class="stats-section">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>시스템 성과</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-icon">🏆</div>
+                                <div class="stat-content">
+                                    <div class="stat-label">행정안전부 장관상</div>
+                                    <div class="stat-value">2025년 9월 수상</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">⚡</div>
+                                <div class="stat-content">
+                                    <div class="stat-label">시스템 가동률</div>
+                                    <div class="stat-value">99.8%</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">🛡️</div>
+                                <div class="stat-content">
+                                    <div class="stat-label">침수 예방 건수</div>
+                                    <div class="stat-value">24건</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">💰</div>
+                                <div class="stat-content">
+                                    <div class="stat-label">국비 지원</div>
+                                    <div class="stat-value">4억 4천만원</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 상세 정보 모달 -->
+    <div class="modal hidden" id="detailModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">지점 상세 정보</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- 상세 정보가 여기에 표시됩니다 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 경보 알림 토스트 -->
+    <div class="toast hidden" id="alertToast">
+        <div class="toast-content">
+            <span class="toast-icon">⚠️</span>
+            <span class="toast-message" id="toastMessage"></span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
