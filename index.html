@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="제천시 AI 침수 감지 시스템의 실시간 모니터링 대시보드로, 수위·경보·시스템 상태를 한눈에 확인합니다.">
+    <meta name="color-scheme" content="dark light">
     <title>제천시 AI 침수 감지 시스템 - 실시간 모니터링 대시보드</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -15,7 +17,7 @@
                 <div class="logo-section">
                     <h1>제천시 AI 침수 감지 시스템</h1>
                     <p class="system-subtitle">실시간 모니터링 대시보드</p>
-                    <a href="traffic.html">여기를 클릭하세요</a>
+                    <a href="traffic.html">교통 대시보드 바로가기</a>
                 </div>
             </div>
             <div class="header-center">
@@ -57,7 +59,7 @@
                     <div class="card__body">
                         <div class="monitoring-map">
                             <div class="map-container" id="mapContainer">
-                                <!-- 모니터링 지점들이 여기에 표시됩니다 -->
+                                <p class="placeholder" aria-live="polite">모니터링 지점 데이터를 불러오는 중입니다...</p>
                             </div>
                         </div>
                     </div>
@@ -96,7 +98,7 @@
                     </div>
                     <div class="card__body">
                         <div class="alert-levels" id="alertLevels">
-                            <!-- 경보 단계들이 여기에 표시됩니다 -->
+                            <p class="placeholder" aria-live="polite">경보 단계 정보를 준비 중입니다...</p>
                         </div>
                     </div>
                 </div>
@@ -108,7 +110,7 @@
                     </div>
                     <div class="card__body">
                         <div class="components-grid" id="componentsGrid">
-                            <!-- 시스템 구성요소들이 여기에 표시됩니다 -->
+                            <p class="placeholder" aria-live="polite">시스템 구성요소 상태를 불러오는 중입니다...</p>
                         </div>
                     </div>
                 </div>
@@ -122,7 +124,7 @@
                 <div class="card">
                     <div class="card__header">
                         <h3>실시간 수위 모니터링</h3>
-                        <button class="btn btn--sm btn--secondary" id="exportBtn">데이터 내보내기</button>
+                        <button class="btn btn--sm btn--secondary" id="exportBtn" aria-label="최근 24시간 수위 데이터를 CSV로 내보내기">데이터 내보내기</button>
                     </div>
                     <div class="card__body">
                         <div class="chart-container" style="position: relative; height: 300px;">
